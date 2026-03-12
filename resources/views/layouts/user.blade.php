@@ -78,10 +78,40 @@
         .detail-row:last-child{border-bottom:none;}
         .detail-label{font-size:0.75rem;font-weight:700;color:#94a3b8;letter-spacing:0.04em;text-transform:uppercase;padding-top:1px;}
         .detail-value{font-size:0.875rem;color:#1e293b;font-weight:500;}
+        /* LOGOUT MODAL */
+        #logoutModal{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:1rem;}
+        #logoutModal.open{display:flex;}
+        .logout-modal-card{background:#fff;border-radius:1.25rem;box-shadow:0 24px 60px rgba(0,0,0,0.3);width:100%;max-width:380px;overflow:hidden;animation:modalIn 0.2s ease;}
+        @keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(8px);}to{opacity:1;transform:scale(1) translateY(0);}}
+        .logout-modal-icon{width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+        .logout-btn-cancel{flex:1;padding:0.7rem;border:1px solid #e2e8f0;border-radius:0.625rem;background:#fff;color:#475569;font-size:0.875rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:inherit;}
+        .logout-btn-cancel:hover{background:#f8fafc;border-color:#cbd5e1;}
+        .logout-btn-confirm{flex:1;padding:0.7rem;border:none;border-radius:0.625rem;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;font-size:0.875rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:inherit;box-shadow:0 4px 12px rgba(220,38,38,0.3);}
+        .logout-btn-confirm:hover{background:linear-gradient(135deg,#b91c1c,#991b1b);box-shadow:0 6px 16px rgba(220,38,38,0.4);}
     </style>
 </head>
 <body>
 <div id="sbOverlay" onclick="closeSB()"></div>
+
+<!-- LOGOUT CONFIRMATION MODAL -->
+<div id="logoutModal" onclick="if(event.target===this)closeLogoutModal()">
+    <div class="logout-modal-card">
+        <div style="padding:2rem 1.75rem 1.5rem;text-align:center;">
+            <div class="logout-modal-icon">
+                <svg fill="none" stroke="#dc2626" viewBox="0 0 24 24" style="width:28px;height:28px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            </div>
+            <p style="font-size:1.125rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Confirm Logout</p>
+            <p style="font-size:0.875rem;color:#64748b;line-height:1.6;">Are you sure you want to log out? Any unsaved changes will be lost.</p>
+        </div>
+        <div style="display:flex;gap:0.75rem;padding:0 1.75rem 1.75rem;">
+            <button class="logout-btn-cancel" onclick="closeLogoutModal()">Cancel</button>
+            <form method="POST" action="{{ route('logout') }}" style="flex:1;">
+                @csrf
+                <button type="submit" class="logout-btn-confirm" style="width:100%;">Yes, Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- SIDEBAR -->
 <aside id="userSidebar">
@@ -146,13 +176,13 @@
                 <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </button>
         </div>
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ route('logout') }}" id="userLogoutForm" style="display:none;">
             @csrf
-            <button type="submit" class="sb-logout-btn">
-                <svg style="width:0.875rem;height:0.875rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                Logout
-            </button>
         </form>
+        <button type="button" class="sb-logout-btn" onclick="openLogoutModal()">
+            <svg style="width:0.875rem;height:0.875rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Logout
+        </button>
     </div>
 </aside>
 
@@ -284,6 +314,13 @@
 
 <script>
     const sb=document.getElementById('userSidebar'),ov=document.getElementById('sbOverlay');
+    function openSB(){sb.classList.add('open');ov.classList.add('show');}
+    function closeSB(){sb.classList.remove('open');ov.classList.remove('show');}
+    window.addEventListener('resize',()=>{ if(window.innerWidth>=1024){sb.classList.remove('open');ov.classList.remove('show');} });
+
+    function openLogoutModal(){document.getElementById('logoutModal').classList.add('open');}
+    function closeLogoutModal(){document.getElementById('logoutModal').classList.remove('open');}
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLogoutModal(); });
     function openSB(){sb.classList.add('open');ov.classList.add('show');}
     function closeSB(){sb.classList.remove('open');ov.classList.remove('show');}
     window.addEventListener('resize',()=>{ if(window.innerWidth>=1024){sb.classList.remove('open');ov.classList.remove('show');} });

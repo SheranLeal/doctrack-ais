@@ -39,6 +39,7 @@ Route::middleware(['auth', 'admin'])
         Route::get('/documents/{document}/detail',    [AdminController::class, 'documentDetail'])->name('documents.detail');
         Route::get('/pending',                        [AdminController::class, 'pendingDocuments'])->name('pending');
         Route::get('/deferred',                       [AdminController::class, 'deferredDocuments'])->name('deferred');
+        Route::get('/routed',                         [AdminController::class, 'routedDocuments'])->name('routed');
         Route::patch('/documents/{document}/status',  [AdminController::class, 'updateDocumentStatus'])->name('documents.status');
         Route::get('/audit-logs',                     [AdminController::class, 'auditLogs'])->name('audit-logs');
         Route::get('/recent-logs',                    [AdminController::class, 'getRecentLogs'])->name('recent-logs');

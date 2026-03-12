@@ -91,7 +91,6 @@
                             'to'=>$doc->to_department,
                             'status'=>$doc->status,
                             'remarks'=>$doc->remarks,
-                            'file'=>$doc->file_path,
                             'date'=>$doc->created_at->format('F d, Y h:i A'),
                         ]) }})"
                             style="display:inline-flex;align-items:center;gap:0.25rem;padding:0.375rem 0.75rem;background:#fff5f5;border:1px solid #fecaca;color:#991b1b;font-size:0.75rem;font-weight:600;border-radius:0.5rem;cursor:pointer;transition:all 0.15s;font-family:inherit;"
@@ -158,10 +157,6 @@
                     <p style="font-size:0.72rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.04em;">Admin Remarks</p>
                     <p id="mdRemarks" style="font-size:0.875rem;"></p>
                 </div>
-                <div style="display:grid;grid-template-columns:130px 1fr;gap:0.5rem;padding:0.75rem 1rem;background:#fafafa;">
-                    <p style="font-size:0.72rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.04em;">Attachment</p>
-                    <p id="mdFile" style="font-size:0.875rem;"></p>
-                </div>
             </div>
             <button onclick="closeMyDoc()" style="width:100%;padding:0.75rem;border:1.5px solid #e2e8f0;background:#fff;color:#64748b;font-weight:600;font-size:0.875rem;border-radius:0.75rem;cursor:pointer;font-family:inherit;transition:all 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#fff'">Close</button>
         </div>
@@ -191,9 +186,6 @@ function viewMyDoc(d){
     document.getElementById('mdRemarks').innerHTML = d.remarks
         ? `<span style="color:#374151;">${d.remarks}</span>`
         : '<span style="color:#cbd5e1;font-style:italic;">No remarks yet</span>';
-    document.getElementById('mdFile').innerHTML = d.file
-        ? `<a href="/storage/${d.file}" target="_blank" style="color:#1d4ed8;font-weight:600;">📎 View Attachment</a>`
-        : '<span style="color:#cbd5e1;font-style:italic;">No file attached</span>';
     document.getElementById('myDocModal').style.display='flex';
 }
 function closeMyDoc(){ document.getElementById('myDocModal').style.display='none'; }

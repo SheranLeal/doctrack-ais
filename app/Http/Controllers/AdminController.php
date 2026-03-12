@@ -78,7 +78,6 @@ class AdminController extends Controller
             'purpose'            => $document->purpose,
             'to_department'      => $document->to_department,
             'remarks'            => $document->remarks,
-            'file_path'          => $document->file_path,
         ]);
     }
 
@@ -92,6 +91,12 @@ class AdminController extends Controller
     {
         $documents = Document::with('submitter')->where('status', 'deferred')->latest()->paginate(10);
         return view('admin.deferred', compact('documents'));
+    }
+
+    public function routedDocuments()
+    {
+        $documents = Document::with('submitter')->where('status', 'routed')->latest()->paginate(10);
+        return view('admin.routed', compact('documents'));
     }
 
     public function updateDocumentStatus(Request $request, Document $document)

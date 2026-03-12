@@ -23,7 +23,6 @@
             <option value="routed"   {{ request('status')=='routed'?'selected':'' }}>Routed</option>
             <option value="deferred" {{ request('status')=='deferred'?'selected':'' }}>Deferred</option>
             <option value="approved" {{ request('status')=='approved'?'selected':'' }}>Approved</option>
-            <option value="received" {{ request('status')=='received'?'selected':'' }}>Received</option>
         </select>
     </form>
 </div>
@@ -144,10 +143,6 @@
                 <div class="detail-row" style="padding:0.75rem 1rem;">
                     <p class="detail-label">Remarks</p>
                     <p class="detail-value" id="vRemarks" style="color:#64748b;font-style:italic;"></p>
-                </div>
-                <div class="detail-row" style="padding:0.75rem 1rem;background:#fafafa;">
-                    <p class="detail-label">Attachment</p>
-                    <p class="detail-value" id="vFile"></p>
                 </div>
             </div>
 
@@ -276,9 +271,6 @@ function viewDoc(id){
         document.getElementById('vPurpose').textContent = d.purpose;
         document.getElementById('vDest').textContent = d.to_department;
         document.getElementById('vRemarks').textContent = d.remarks || 'No remarks yet.';
-        document.getElementById('vFile').innerHTML = d.file_path
-            ? `<a href="/storage/${d.file_path}" target="_blank" style="color:#1d4ed8;font-weight:600;text-decoration:none;">📎 View Attachment</a>`
-            : '<span style="color:#94a3b8;font-style:italic;">No file attached</span>';
     })
     .catch(()=>{
         document.getElementById('vModalTracking').textContent = 'Error loading details.';

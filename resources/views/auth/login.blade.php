@@ -13,7 +13,7 @@
             background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
         .orb1 { position:fixed;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,0.2),transparent 70%);top:-120px;right:-80px;pointer-events:none;z-index:0; }
         .orb2 { position:fixed;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(127,29,29,0.3),transparent 70%);bottom:-80px;left:-60px;pointer-events:none;z-index:0; }
-        .logo-ring { width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#7f1d1d,#dc2626);display:flex;align-items:center;justify-content:center;margin:0 auto 1.125rem;box-shadow:0 8px 32px rgba(185,28,28,0.6),0 0 0 5px rgba(185,28,28,0.15);overflow:hidden; }
+        .logo-ring { width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#7f1d1d,#dc2626);display:flex;align-items:center;justify-content:center;margin:0 auto 1.125rem;box-shadow:0 8px 32px rgba(185,28,28,0.6),0 0 0 5px rgba(185,28,28,0.15);overflow:hidden; }
         .card { background:rgba(255,255,255,0.98);border-radius:1.5rem;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);overflow:hidden;border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px); }
         .accent-bar { height:5px;background:linear-gradient(90deg,#7f1d1d,#dc2626,#f59e0b); }
         

@@ -71,7 +71,6 @@ class UserController extends Controller
             'purpose'            => $document->purpose,
             'to_department'      => $document->to_department,
             'remarks'            => $document->remarks,
-            'file_path'          => $document->file_path,
         ]);
     }
 
@@ -86,13 +85,7 @@ class UserController extends Controller
             'document_type' => 'required|string',
             'details'       => 'required|string',
             'purpose'       => 'required|string',
-            'file'          => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,gif,bmp,svg,webp|max:10240',
         ]);
-
-        $filePath = null;
-        if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('documents', 'public');
-        }
 
         $document = Document::create([
             'tracking_number' => Document::generateTrackingNumber(),
@@ -101,7 +94,6 @@ class UserController extends Controller
             'details'         => $request->details,
             'purpose'         => $request->purpose,
             'to_department'   => 'Administration',
-            'file_path'       => $filePath,
             'status'          => 'pending',
         ]);
 

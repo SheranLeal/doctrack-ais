@@ -32,7 +32,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('user.submit.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('user.submit.store') }}">
                 @csrf
 
                 <!-- Section: Submitter Info -->
@@ -133,26 +133,6 @@
                     </div>
                 </div>
 
-                <!-- Section: Attachment -->
-                <div style="margin-bottom:2rem;">
-                    <p style="font-size:0.7rem;font-weight:700;color:#94a3b8;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.75rem;">Attachment <span style="font-weight:500;text-transform:none;letter-spacing:0;">(Optional)</span></p>
-
-                    <label for="fileInput" style="display:block;cursor:pointer;">
-                        <div id="dropZone" style="border:2px dashed #cbd5e1;border-radius:0.875rem;padding:2rem 1.5rem;text-align:center;transition:all 0.2s;background:#fafafa;"
-                            onmouseover="this.style.borderColor='#1d4ed8';this.style.background='#eff6ff'"
-                            onmouseout="this.style.borderColor='#cbd5e1';this.style.background='#fafafa'">
-                            <div style="width:48px;height:48px;background:#f1f5f9;border-radius:0.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 0.875rem;">
-                                <svg style="width:1.5rem;height:1.5rem;color:#94a3b8;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                                </svg>
-                            </div>
-                            <p id="fileLabel" style="font-size:0.875rem;font-weight:600;color:#475569;">Click to upload a file</p>
-                            <p style="font-size:0.75rem;color:#94a3b8;margin-top:0.25rem;">PDF, DOC, DOCX, JPG, PNG — Max 10MB</p>
-                        </div>
-                        <input type="file" name="file" id="fileInput" style="display:none;" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-                    </label>
-                </div>
-
                 <!-- Action Buttons -->
                 <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
                     <button type="submit"
@@ -191,18 +171,4 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    document.getElementById('fileInput').addEventListener('change', function() {
-        const label = document.getElementById('fileLabel');
-        if (this.files.length > 0) {
-            label.textContent = '📎 ' + this.files[0].name;
-            label.style.color = '#1d4ed8';
-        } else {
-            label.textContent = 'Click to upload a file';
-            label.style.color = '#475569';
-        }
-    });
-</script>
-@endpush
 @endsection

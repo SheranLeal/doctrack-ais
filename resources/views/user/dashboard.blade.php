@@ -24,7 +24,7 @@
 
 <!-- Stat Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4">
+    <a href="{{ route('user.documents') }}" class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
         <div class="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </div>
@@ -32,8 +32,8 @@
             <p class="text-lg font-bold text-gray-800">{{ $totalSubmitted }}</p>
             <p class="text-xs text-gray-500">Total Submitted</p>
         </div>
-    </div>
-    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4">
+    </a>
+    <a href="{{ route('user.pending') }}" class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
         <div class="w-9 h-9 bg-yellow-100 rounded-xl flex items-center justify-center text-yellow-600">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
@@ -41,8 +41,8 @@
             <p class="text-lg font-bold text-yellow-600">{{ $pending }}</p>
             <p class="text-xs text-gray-500">Pending</p>
         </div>
-    </div>
-    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4">
+    </a>
+    <a href="{{ route('user.routed') }}" class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
         <div class="w-9 h-9 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
         </div>
@@ -50,8 +50,8 @@
             <p class="text-lg font-bold text-blue-600">{{ $routed }}</p>
             <p class="text-xs text-gray-500">Routed</p>
         </div>
-    </div>
-    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4">
+    </a>
+    <a href="{{ route('user.deferred') }}" class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
         <div class="w-9 h-9 bg-red-100 rounded-xl flex items-center justify-center text-red-600">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
         </div>
@@ -59,7 +59,7 @@
             <p class="text-lg font-bold text-red-600">{{ $deferred }}</p>
             <p class="text-xs text-gray-500">Deferred</p>
         </div>
-    </div>
+    </a>
 </div>
 
 <!-- Chart and Recent Documents -->
@@ -118,7 +118,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const data = {
-        labels: ['Pending', 'Routed', 'Deferred', 'Other'],
+        labels: ['Pending', 'Routed', 'Deferred', 'Approved'],
         datasets: [{
             label: 'Documents',
             data: [
@@ -131,7 +131,7 @@
                 '#f59e0b', // amber-500 for Pending
                 '#3b82f6', // blue-500 for Routed
                 '#ef4444', // red-500 for Deferred
-                '#64748b'  // slate-500 for Other
+                '#27ea51'  // slate-500 for Other
             ],
             borderColor: '#fff',
             borderWidth: 2,

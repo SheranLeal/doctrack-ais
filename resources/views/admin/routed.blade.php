@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title', 'Pending Documents')
-@section('page-title', 'Pending Documents')
+@section('title', 'Routed Documents')
+@section('page-title', 'Routed Documents')
 
 @section('content')
 <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
     <div class="px-8 py-6 border-b border-gray-100 flex items-center gap-3 bg-white">
-        <div class="w-3 h-3 bg-yellow-500 rounded-full animate-pulse"></div>
-        <h3 class="font-bold text-lg text-gray-800">Pending Documents ({{ $documents->total() }})</h3>
+        <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+        <h3 class="font-bold text-lg text-gray-800">Routed Documents ({{ $documents->total() }})</h3>
     </div>
     <div class="overflow-x-auto">
         <table class="w-full">
@@ -32,14 +32,14 @@
                         <div class="flex gap-2 justify-center">
                             <form method="POST" action="{{ route('admin.documents.status', $doc) }}">
                                 @csrf @method('PATCH')
-                                <input type="hidden" name="status" value="routed">
-                                <button class="bg-blue-50 text-blue-600 text-xs px-4 py-1.5 rounded-lg hover:bg-blue-100 font-semibold transition">Route</button>
+                                <input type="hidden" name="status" value="approved">
+                                <button class="bg-green-50 text-green-600 text-xs px-4 py-1.5 rounded-lg hover:bg-green-100 font-semibold transition">Approve</button>
                             </form>
                         </div>
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="6" class="px-6 py-20 text-center text-gray-400">No pending documents. 🎉</td></tr>
+                <tr><td colspan="6" class="px-6 py-20 text-center text-gray-400">No routed documents.</td></tr>
                 @endforelse
             </tbody>
         </table>
